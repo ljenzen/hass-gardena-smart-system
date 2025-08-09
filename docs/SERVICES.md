@@ -216,6 +216,39 @@ data:
   device_id: "14ff41a6-21eb-454f-b3ad-51f0958c0365"
 ```
 
+### Integration Services
+
+#### `gardena_smart_system.reload`
+Reload the Gardena Smart System integration.
+
+**Example:**
+```yaml
+service: gardena_smart_system.reload
+```
+
+#### `gardena_smart_system.websocket_diagnostics`
+Get WebSocket connection diagnostics and status information.
+
+**Service Data:**
+```yaml
+detailed: false  # Optional, include detailed connection information
+```
+
+**Example:**
+```yaml
+service: gardena_smart_system.websocket_diagnostics
+data:
+  detailed: true
+```
+
+#### `gardena_smart_system.reconnect_websocket`
+Force WebSocket reconnection for the Gardena Smart System integration.
+
+**Example:**
+```yaml
+service: gardena_smart_system.reconnect_websocket
+```
+
 ## Finding Device IDs
 
 To find the device ID for a specific device:

@@ -1,19 +1,198 @@
-start_override:
+mower_start:
+  description: Start automatic mowing according to the device's schedule.
   target:
     entity:
       integration: "gardena_smart_system"
       domain: "lawn_mower"
   fields:
-    duration:
+    device_id:
+      description: Gardena mower device ID.
+      example: "4ad7d828-b19f-47d5-b7d2-15eea0fb8516"
       required: true
-      example: "3600"
-      default: "3600"
+    duration:
+      description: Optional duration for manual run in seconds.
+      example: 1800
+      default: 1800
       selector:
         number:
-          min: 1
+          min: 60
+          max: 14400
+          unit_of_measurement: seconds
+          mode: box
+
+mower_start_manual:
+  description: Start manual mowing for a specified duration.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "lawn_mower"
+  fields:
+    device_id:
+      description: Gardena mower device ID.
+      example: "4ad7d828-b19f-47d5-b7d2-15eea0fb8516"
+      required: true
+    duration:
+      description: Duration in seconds for manual mowing.
+      example: 3600
+      required: true
+      selector:
+        number:
+          min: 60
+          max: 14400
+          unit_of_measurement: seconds
+          mode: box
+
+mower_park:
+  description: Park the mower until the next scheduled task.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "lawn_mower"
+  fields:
+    device_id:
+      description: Gardena mower device ID.
+      example: "4ad7d828-b19f-47d5-b7d2-15eea0fb8516"
+      required: true
+
+mower_park_until_notice:
+  description: Park the mower and ignore the schedule until further notice.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "lawn_mower"
+  fields:
+    device_id:
+      description: Gardena mower device ID.
+      example: "4ad7d828-b19f-47d5-b7d2-15eea0fb8516"
+      required: true
+
+power_socket_on:
+  description: Turn on a power socket for a specified duration.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "switch"
+  fields:
+    device_id:
+      description: Gardena power socket device ID.
+      example: "31c6c096-bf0e-4c1b-a8b6-69b21c79828a"
+      required: true
+    duration:
+      description: Duration in seconds to keep the socket on.
+      example: 3600
+      default: 3600
+      selector:
+        number:
+          min: 60
           max: 86400
           unit_of_measurement: seconds
           mode: box
+
+power_socket_on_indefinite:
+  description: Turn on a power socket indefinitely.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "switch"
+  fields:
+    device_id:
+      description: Gardena power socket device ID.
+      example: "31c6c096-bf0e-4c1b-a8b6-69b21c79828a"
+      required: true
+
+power_socket_off:
+  description: Turn off a power socket immediately.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "switch"
+  fields:
+    device_id:
+      description: Gardena power socket device ID.
+      example: "31c6c096-bf0e-4c1b-a8b6-69b21c79828a"
+      required: true
+
+power_socket_pause:
+  description: Pause automatic operation of a power socket.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "switch"
+  fields:
+    device_id:
+      description: Gardena power socket device ID.
+      example: "31c6c096-bf0e-4c1b-a8b6-69b21c79828a"
+      required: true
+
+power_socket_unpause:
+  description: Resume automatic operation of a power socket.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "switch"
+  fields:
+    device_id:
+      description: Gardena power socket device ID.
+      example: "31c6c096-bf0e-4c1b-a8b6-69b21c79828a"
+      required: true
+
+valve_open:
+  description: Open a valve for a specified duration.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "valve"
+  fields:
+    device_id:
+      description: Gardena valve device ID.
+      example: "14ff41a6-21eb-454f-b3ad-51f0958c0365"
+      required: true
+    duration:
+      description: Duration in seconds to keep the valve open.
+      example: 1800
+      default: 3600
+      selector:
+        number:
+          min: 60
+          max: 14400
+          unit_of_measurement: seconds
+          mode: box
+
+valve_close:
+  description: Close a valve immediately.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "valve"
+  fields:
+    device_id:
+      description: Gardena valve device ID.
+      example: "14ff41a6-21eb-454f-b3ad-51f0958c0365"
+      required: true
+
+valve_pause:
+  description: Pause automatic operation of a valve.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "valve"
+  fields:
+    device_id:
+      description: Gardena valve device ID.
+      example: "14ff41a6-21eb-454f-b3ad-51f0958c0365"
+      required: true
+
+valve_unpause:
+  description: Resume automatic operation of a valve.
+  target:
+    entity:
+      integration: "gardena_smart_system"
+      domain: "valve"
+  fields:
+    device_id:
+      description: Gardena valve device ID.
+      example: "14ff41a6-21eb-454f-b3ad-51f0958c0365"
+      required: true
 
 reload:
   description: Reload the Gardena Smart System integration.
@@ -32,3 +211,4 @@ websocket_diagnostics:
 
 reconnect_websocket:
   description: Force WebSocket reconnection for the Gardena Smart System integration.
+
